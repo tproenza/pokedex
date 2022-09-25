@@ -2,15 +2,16 @@ import { useState, useEffect, useCallback } from 'react';
 
 import { pokeApi } from '../services/apiService';
 import { IPokemon } from '../services/apiService/apiService.types';
-import PokemonCard from '../features/PokemonCard';
-import { Link, useNavigate } from 'react-router-dom';
+import { PokemonCard } from '../features';
+import { useNavigate } from 'react-router-dom';
+import { ListContainer, LoadMoreBtn } from './styles';
+import { StyledLink } from '../global.styles';
 
 const PokemonListView = () => {
   
   const [loading, setLoading] = useState<boolean>(false);
   const [pokemons, setPokemons] = useState<(IPokemon[])>([]);
   const [offset, setOffset] = useState<string>('0');
-  const [prevPage, setPrevPage] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const getPokemons = useCallback(async (offset: string) => {
@@ -20,13 +21,12 @@ const PokemonListView = () => {
       navigate("/oops");
       return;
     }
-    setOffset(String(pokemon.length));
     setPokemons((prev) => [...prev, ...pokemon]);
+    setOffset(String(pokemons.length));
     setLoading(false);
   }, [navigate]);
 
   useEffect(() => {
-    console.log('useEffect');
     getPokemons(offset);
     // window.scrollTo({ behavior: 'smooth', top: '0px' });
   }, [getPokemons, offset]);
@@ -37,12 +37,15 @@ const PokemonListView = () => {
 
   return (
     <>
-      {pokemons?.map(pokemon => {
-        return (<Link to={`/pokemon/${pokemon.name}`} key={pokemon.name}>
-          <PokemonCard {...pokemon} />
-        </Link>)
-      })}
-      <button onClick={handleLoadMore}>Load More</button>
+      <ListContainer>
+        {pokemons?.map(pokemon => {
+          return (
+          <StyledLink to={`/pokemon/${pokemon.name}`} key={pokemon.name}>
+            <PokemonCard {...pokemon} />
+          </StyledLink>)
+        })}
+      </ListContainer>
+      <LoadMoreBtn onClick={handleLoadMore}>Load More</LoadMoreBtn>
     </>
   );
 }

@@ -2,10 +2,7 @@ export interface IPokemon {
   name: string;
   order: number;
   sprite: string;
-  types: {
-    name: string;
-    url: string;
-  }[];
+  types: any;
   height: number;
   weight: number;
   stats: string[];
@@ -14,7 +11,7 @@ export interface IPokemon {
 export interface ITransformed {
   name: string; 
   order: number; 
-  sprites: { front_shiny: string; }; 
+  sprites: any; 
   types: any; 
   height: number; 
   weight: number; 

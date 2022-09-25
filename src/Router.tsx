@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { AppContainer } from "./global.styles";
 import { 
   PokemonListView, 
   PokemonDetailView, 
@@ -10,7 +10,7 @@ import {
 
 const Router = () => {
   return (
-    <div className="app">
+    <AppContainer>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<PokemonListView />} />
@@ -20,7 +20,7 @@ const Router = () => {
           <Route path="/oops" element={<OopsView />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </AppContainer>
   );
 }
 
