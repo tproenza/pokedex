@@ -3,22 +3,21 @@ import { pokeApi } from "../services/apiService";
 import { IPokemon } from "../services/apiService/apiService.types";
 
 
-const useGetPokemons = (onSuccess: (offset: string) => void, errCb: () => void) => {
+const useGetPokemon = (errCb: () => void) => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [pokemon, setPokemon] = useState<(IPokemon[])>([]);
-  const fetchData = async (offset: string) => {
+  const [pokemon, setPokemon] = useState<(IPokemon)>();
+  const fetchData = async (name: string | undefined) => {
     setLoading(true);
-    const data = await pokeApi.getPokemons(offset);
+    const data = await pokeApi.getPokemon(name);
     setLoading(false);
     if (!data) {
       errCb()
       return;
     }
-    setPokemon((prev) => [...prev, ...data]);
-    onSuccess(String(pokemon.length))
+    setPokemon(data);
   }
 
   return { pokemon, loading, fetchData }
 }
 
-export default useGetPokemons;
+export default useGetPokemon;

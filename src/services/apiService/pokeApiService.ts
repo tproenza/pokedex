@@ -15,7 +15,7 @@ const getPokemonList = (offset: string = '0') => {
     return;
   }
 }
-const getPokemonByName = (name: string) => {
+const getPokemonByName = (name: string | undefined) => {
   try {
     return pokeClient.get(`/pokemon/${name}`)
       .catch(err => {

@@ -14,24 +14,16 @@ import {
   SubHeader,
  } from './styles';
  import { TypePill } from '../features/PokemonCard/styles';
+ import { useGetPokemon } from "../hooks";
 
 const PokemonDetailView = () => {
   const navigate = useNavigate();
   const { name } = useParams();
-  const [pokemon, setPokemon] = useState<(IPokemon)>();
-
-  const getPokemon = useCallback(async () => {
-    const p = await pokeApi.getPokemon(name);
-    if (!p) {
-      navigate("/notFound");
-      return;
-    }
-    setPokemon(p);
-  }, [name, navigate]);
+  const { pokemon, fetchData } = useGetPokemon(() => navigate("/notFound"))
 
   useEffect(() => {
-    getPokemon();
-  }, [getPokemon])
+    fetchData(name);
+  }, [])
   return (
     <>
       <DetailHeader>{pokemon?.name} #{pokemon?.order}</DetailHeader>
