@@ -1,5 +1,4 @@
 import getApiClient from "./apiService";
-import { Params } from '../../utils/utils';
 import transformPokemon from "../transformService.ts/transformPokemon";
 import { IApiPokemonDetail } from "./apiService.types";
 
@@ -29,7 +28,6 @@ const getPokemonByName = (name: string) => {
 }
 
 const getPokemons = async (offset: string) => {
-  // const {limit, offset} = Params.get(url);
   const res = await getPokemonList(offset);
   if (res.status >= 400) return;
 

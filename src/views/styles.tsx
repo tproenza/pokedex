@@ -24,7 +24,6 @@ const LeftCol = styled.div`
   flex-flow: column wrap;
   width: 48%;
   height: 100%;
-  background-color: green;
   text-align: right;
   color: white;
   padding: 20px 10px;

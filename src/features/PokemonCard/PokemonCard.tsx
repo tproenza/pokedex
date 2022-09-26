@@ -11,8 +11,8 @@ const { name, order, sprite, stats, types, weight } = pokemon;
       <Order>#{order}</Order>
       <Name>{name}</Name>
       <TypeContainer>
-        {types.map((t: any) => {
-          return <TypePill key={name}>{t.type.name}</TypePill>
+        {types.map((t: any, idx: number) => {
+          return <TypePill key={idx}>{t.type.name}</TypePill>
         })}
       </TypeContainer>
     </CardContainer>

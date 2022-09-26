@@ -40,8 +40,8 @@ const PokemonDetailView = () => {
           <DetailContainer>
             <DetailImg src={pokemon?.sprite}></DetailImg>
             <DetailContainer>
-              {pokemon?.stats.map((s:any) => {
-                return <StatItem>{s.stat.name} {s.base_stat}</StatItem>
+              {pokemon?.stats.map((s: any, idx: number) => {
+                return <StatItem key={s.stat.name+idx}>{s.stat.name} {s.base_stat}</StatItem>
               })}
             </DetailContainer>
           </DetailContainer>
@@ -55,8 +55,8 @@ const PokemonDetailView = () => {
             <SubHeader>Type</SubHeader>
           </DetailContainer>
           <TypeContainer>
-              {pokemon?.types.map((t: any) => {
-                return <TypePill>{t.type.name}</TypePill>
+              {pokemon?.types.map((t: any, idx: number) => {
+                return <TypePill key={t.type.name+idx}>{t.type.name}</TypePill>
               })}
             </TypeContainer>
         </RightCol>

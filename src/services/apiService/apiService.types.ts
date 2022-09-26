@@ -9,8 +9,8 @@ export interface IPokemon {
 }
 
 export interface ITransformed {
+  id: any;
   name: string; 
-  order: number; 
   sprites: any; 
   types: any; 
   height: number; 

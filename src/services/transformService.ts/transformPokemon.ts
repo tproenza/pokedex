@@ -3,7 +3,7 @@ import { ITransformed } from "../apiService/apiService.types";
 const transformPokemon = (p: ITransformed) => {
   const t = {
     name: p.name,
-    order: p.order,
+    order: p.id,
     sprite: p['sprites']['versions']['generation-v']['black-white']['animated']['front_default'],
     types: p.types,
     height: p.height,
