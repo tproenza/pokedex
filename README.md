@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# Pokedex clone 👾
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web responsive approach to building a Pokedex clone using the [Poke API](https://pokeapi.co/)
 
-## Available Scripts
+## How to run
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
+```
+git clone git@github.com:tproenza/pokedex.git
+cd pokedex
+```
+Use Node v14 or greater: If you're using [NVM](https://github.com/nvm-sh/nvm)
+```
+nvm install v14
+nvm use v14
+```
+Install the dependencies
+```
+npm install
+```
+Start the app
+```
+npm start
+```
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Stack
 
-### `npm test`
+- [Create React App](https://github.com/facebook/create-react-app) To bootstrap the app
+- [TypeScript](https://www.typescriptlang.org/) For Typing
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) For testing
+- [Axios](https://www.npmjs.com/package/axios) As the HTTP client
+- [Styled Components](https://styled-components.com/) For styling
+- [Flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) For responsiveness
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## What's Included
+**Testing:** Some tests can be found [here](https://github.com/tproenza/pokedex/blob/main/src/App.test.tsx). This is an initial subset of more that can be included throughout the app to assert the expected user behavior.
 
-### `npm run build`
+**Responsiveness & Styling:** The app layout is responsive solely with the use of Flexbox. Less time was spent on actual styling (CSS), but all of the groundwork is established by modular use of Styled Components.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Error handling:** Exception handling statements are defined throughout the app in efforts to ensure the user doesn't end in a state where the app is unusable, however, there's always room to improve UI/UX via proper error handling. Some of the thought includes adding `catch` blocks at the http client level where a `try...catch` statement may not capture `Uncaught (in promise)` type errors. The user is also routed to appropriate routes when the app is unable to producre the data to build the UI. Further enhancements should be added regarding what a user sees after being routed to a certain view due to hitting error cases.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Create Pokemon feature:** The inspiration for the pokemon being added comes after the programming "glitch" introduced in some of the early Pokemon video games where an unofficial species can be found and is known as [MissingNo](https://en.wikipedia.org/wiki/MissingNo.). This feature uses the [Storage service](https://github.com/tproenza/pokedex/blob/main/src/services/storageService.ts/storageService.ts) and integrates with [custom hooks](https://github.com/tproenza/pokedex/tree/main/src/hooks) which allows users to create new pokemon without using any 3rd party APIs and see them in the list with the existing pokemon coming from the [Poke API](https://pokeapi.co/). 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The feature allows a user to create a new Pokemon by inputing just a name for demonstration purposes. More input fields can be added to create your own Pokemon with the stats of your liking. Styling-wise (CSS) this view can be greatly enhanced as not much time was placed into it.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Takeaways
+There are great opportunities to enhance each of the above sections that might've been under time contraints and will be followed up upon with additional PRs. Thanks for reading!
