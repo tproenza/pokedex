@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { pokeApi } from "../services/apiService";
-import { IPokemon } from "../services/apiService/apiService.types";
+
 import { 
   DetailContainer, 
   LeftCol, 
@@ -15,11 +14,12 @@ import {
  } from './styles';
  import { TypePill } from '../features/PokemonCard/styles';
  import { useGetPokemon } from "../hooks";
+import { FIXME } from "../shared/types";
 
 const PokemonDetailView = () => {
   const navigate = useNavigate();
   const { name } = useParams();
-  const { pokemon, fetchData } = useGetPokemon(() => navigate("/notFound"))
+  const { pokemon, fetchData } = useGetPokemon(name, () => navigate("/notFound"))
 
   useEffect(() => {
     fetchData(name);
@@ -32,7 +32,7 @@ const PokemonDetailView = () => {
           <DetailContainer>
             <DetailImg src={pokemon?.sprite}></DetailImg>
             <DetailContainer>
-              {pokemon?.stats.map((s: any, idx: number) => {
+              {pokemon?.stats.map((s: FIXME, idx: number) => {
                 return <StatItem key={s.stat.name+idx}>{s.stat.name} {s.base_stat}</StatItem>
               })}
             </DetailContainer>
@@ -47,7 +47,7 @@ const PokemonDetailView = () => {
             <SubHeader>Type</SubHeader>
           </DetailContainer>
           <TypeContainer>
-              {pokemon?.types.map((t: any, idx: number) => {
+              {pokemon?.types.map((t: FIXME, idx: number) => {
                 return <TypePill key={t.type.name+idx}>{t.type.name}</TypePill>
               })}
             </TypeContainer>

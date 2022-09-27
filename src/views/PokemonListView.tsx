@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 import { PokemonCard } from '../features';
 import { useNavigate } from 'react-router-dom';
@@ -7,12 +7,12 @@ import { StyledLink } from '../global.styles';
 import { useGetPokemons } from '../hooks';
 
 const PokemonListView = () => {
-  const [offset, setOffset] = useState<string>('0');
+  const [offset, setOffset] = useState<string | undefined>('0');
   const navigate = useNavigate();
-  const { pokemon, fetchData } = useGetPokemons(setOffset, () => navigate("/oops"))
+  const { pokemon, combinedPokemon, fetchData } = useGetPokemons(setOffset, () => navigate("/oops"))
 
   useEffect(() => {
-    fetchData(offset)
+    fetchData(offset);
   }, [])
 
   const handleLoadMore = () => {
@@ -21,8 +21,9 @@ const PokemonListView = () => {
 
   return (
     <>
+    <button onClick={()=> navigate('/create')}>Create your Pokemon!</button>
       <ListContainer>
-        {pokemon?.map(pkmn => {
+        {combinedPokemon?.map(pkmn => {
           return (
           <StyledLink to={`/pokemon/${pkmn.name}`} key={pkmn.name}>
             <PokemonCard {...pkmn} />

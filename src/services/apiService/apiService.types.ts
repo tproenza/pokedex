@@ -1,21 +1,23 @@
+import { FIXME } from "../../shared/types";
+
 export interface IPokemon {
   name: string;
   order: number;
   sprite: string;
-  types: any;
+  types: FIXME;
   height: number;
   weight: number;
   stats: string[];
 }
 
 export interface ITransformed {
-  id: any;
+  id: FIXME;
   name: string; 
-  sprites: any; 
-  types: any; 
+  sprites: FIXME; 
+  types: FIXME; 
   height: number; 
   weight: number; 
-  stats: any; 
+  stats: FIXME; 
 }
 
 export interface IApiPokemonDetail {

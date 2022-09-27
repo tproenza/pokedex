@@ -4,7 +4,7 @@ import { IApiPokemonDetail } from "./apiService.types";
 
 const pokeClient = getApiClient(`https://pokeapi.co/api/v2`);
 
-const getPokemonList = (offset: string = '0') => {
+const getPokemonList = (offset: string) => {
   try {
     return pokeClient.get(`/pokemon/?limit=12&offset=${offset}`)
       .catch(err => {
@@ -27,7 +27,7 @@ const getPokemonByName = (name: string | undefined) => {
   }
 }
 
-const getPokemons = async (offset: string) => {
+const getPokemons = async (offset: string | undefined = '0') => {
   const res = await getPokemonList(offset);
   if (res.status >= 400) return;
 
